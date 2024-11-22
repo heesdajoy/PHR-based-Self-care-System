@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챗봇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .chatbox {
+            max-height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .input-area {
+            display: flex;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-area button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-area button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <h2>건강 챗봇</h2>
+        <div class="chatbox" id="chatbox">
+            <!-- 챗봇 대화 내용이 여기에 표시됩니다 -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="질문을 입력하세요..." />
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        const chatbotResponses = {
+            "혈당": "혈당 수치는 정상 범위가 70~100mg/dL입니다.",
+            "체중": "체중은 키와 나이에 따라 적정 범위가 달라요. 적정 체중을 알고 싶으면 BMI를 계산해보세요.",
+            "운동": "운동은 하루 30분 이상 하는 것이 좋습니다. 걷기나 자전거 타기를 추천합니다."
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value;
+            const chatbox = document.getElementById('chatbox');
+            if (userInput) {
+                // 사용자 메시지 추가
+                chatbox.innerHTML += `<p><strong>사용자:</strong> ${userInput}</p>`;
+
+                // 챗봇 응답
+                const response = chatbotResponses[userInput] || "죄송합니다, 이해하지 못했습니다.";
+                chatbox.innerHTML += `<p><strong>챗봇:</strong> ${response}</p>`;
+
+                // 입력 필드 초기화
+                document.getElementById('userInput').value = '';
+
+                // 스크롤을 최신 메시지로 이동
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }
+        }
+    </script>
+
+</body>
+</html>

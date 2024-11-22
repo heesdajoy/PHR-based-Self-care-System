@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHR 입력</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-container h2 {
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>개인 건강 기록 (PHR) 입력</h2>
+        <form id="phrForm">
+            <label for="name">이름</label>
+            <input type="text" id="name" placeholder="홍길동" required>
+
+            <label for="age">나이</label>
+            <input type="number" id="age" placeholder="30" required>
+
+            <label for="height">키 (cm)</label>
+            <input type="number" id="height" placeholder="170" required>
+
+            <label for="weight">체중 (kg)</label>
+            <input type="number" id="weight" placeholder="70" required>
+
+            <label for="bloodSugar">혈당 (mg/dL)</label>
+            <input type="number" id="bloodSugar" placeholder="100" required>
+
+            <label for="blood">혈액형 </label>
+            <input type="text" id="blood" placeholder="RH포함" required>
+
+            <label for="exercise">평소 운동량 </label>
+            <input type="text" id="exercise" placeholder="걷기 제외" required>
+
+            <label for="allergies">알레르기</label>
+            <textarea id="allergies" placeholder="예: 꽃가루, 특정 약물 등"></textarea>
+
+            <button type="submit">저장</button>
+        </form>
+    </div>
+
+    <script>
+        // 더미 데이터
+        const dummyData = {
+            name: "홍길동",
+            age: 30,
+            height: 170,
+            weight: 70,
+            bloodSugar: 100,
+            blood: "RH+",
+            exercise: "중간",
+            allergies: "꽃가루, 특정 약물"
+        };
+
+        // 더미 데이터를 폼에 자동으로 채우기
+        document.getElementById('name').value = dummyData.name;
+        document.getElementById('age').value = dummyData.age;
+        document.getElementById('height').value = dummyData.height;
+        document.getElementById('weight').value = dummyData.weight;
+        document.getElementById('bloodSugar').value = dummyData.bloodSugar;
+        document.getElementById('blood').value = dummyData.blood;
+        document.getElementById('exercise').value = dummyData.exercise;
+        document.getElementById('allergies').value = dummyData.allergies;
+
+        // 폼 제출 시 데이터 저장 후 메인 페이지로 이동
+        document.getElementById('phrForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value,
+                bloodSugar: document.getElementById('bloodSugar').value,
+                blood: document.getElementById('blood').value,
+                exercise: document.getElementById('exercise').value,
+                allergies: document.getElementById('allergies').value
+            };
+            console.log("입력된 PHR 데이터:", formData);
+            
+            // 데이터 저장 후 알림 메시지와 함께 메인 페이지로 이동
+            alert("PHR 정보가 저장되었습니다.");
+            window.location.href = 'main.html';
+        });
+    </script>
+
+</body>
+</html>
